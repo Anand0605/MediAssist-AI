@@ -7,4 +7,4 @@ const appointmentSchema = new mongoose.Schema({
   status: String,
 });
 
-export default mongoose.model("Appointment", appointmentSchema);
+export default mongoose.model("Appointment",  appointmentSchema);
