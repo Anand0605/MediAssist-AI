@@ -1,6 +1,20 @@
-export const getAppointmentStatus = async ({ patientId }) => {
+import Appointment from "../../src/models/Appointment";
+
+interface AppointmentArgs {
+  patientId: string;
+}
+
+export const appointmentTool = async ({ patientId }: AppointmentArgs) => {
   const appointment = await Appointment.findOne({ patientId });
-  return appointment
-    ? `Your appointment is on ${appointment.date}`
-    : "No appointment found";
+
+  if (!appointment) {
+    return "No appointment found for this patient.";
+  }
+
+  return `
+📅 Appointment Details:
+Doctor: ${appointment.doctor}
+Date: ${appointment.date}
+Status: ${appointment.status}
+`;
 };
